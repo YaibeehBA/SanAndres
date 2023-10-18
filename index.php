@@ -138,6 +138,16 @@
                                 A/C
                             </span>
                         </div>
+                        <div class="guests mb-4 ">
+                            <h6 class="mb-1">Capacidad</h6>
+                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                5 Adultos
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                4 Niños
+                            </span>
+
+                        </div>
                         <div class="rating mb-4">
                             <h6 class="mb-1">Clasificación</h6>
                             <span class="badge rounded-pill bg-light">
@@ -192,6 +202,15 @@
                                 A/C
                             </span>
                         </div>
+                        <div class="guests mb-4 ">
+                            <h6 class="mb-1">Capacidad</h6>
+                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                5 Adultos
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                4 Niños
+                            </span>
+                        </div>
                         <div class="rating mb-4">
                             <h6 class="mb-1">Clasificación</h6>
                             <span class="badge rounded-pill bg-light">
@@ -244,6 +263,15 @@
                             </span>
                             <span class="badge rounded-pill bg-light text-dark  text-wrap ">
                                 A/C
+                            </span>
+                        </div>
+                        <div class="guests mb-4 ">
+                            <h6 class="mb-1">Capacidad</h6>
+                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                5 Adultos
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                4 Niños
                             </span>
                         </div>
                         <div class="rating mb-4">

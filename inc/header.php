@@ -20,7 +20,7 @@
                         <a class="nav-link me-2" href="#">Bar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="#">Contáctanos</a>
+                        <a class="nav-link me-2" href="contactanos.php">Contáctanos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="nosotros.php">Nosotros</a>
