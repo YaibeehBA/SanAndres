@@ -7,7 +7,7 @@
     <?php require('inc/links.php') ?>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
    
-    <title>San Andres</title>
+    <title>San Andres - Home</title>
     <style>
         .availability-form {
             margin-top: -50px;
@@ -297,7 +297,7 @@
                 <h5 class="mt-3">Masajes</h5>
             </div>
             <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas facilidades</a>
+                <a href="facilidades.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas facilidades</a>
 
             </div>
         </div>
