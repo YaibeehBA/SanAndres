@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-lg-3 col-md-12 mb-lg-0 mb-4">
+            <div class="col-lg-3 col-md-12 mb-lg-0 mb-4 px-lg-0">
                 <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
                     <div class="container-fluid flex-lg-column align-items-stretch">
                         <h4 class="mt-2">Buscar por</h4>
@@ -76,7 +76,201 @@
                 </nav>
             </div>
 
-            
+            <div class="col-lg-9 col-md-12 px-4 ">
+                <!-- Inicio de la carta de rooms  -->
+                <div class="card mb-4 border-0 shadow">
+                    <div class="row g-0 p-3 align-items-center">
+                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                            <img src="images/rooms/1.jpg" class="img-fluid rounded" alt="...">
+                        </div>
+
+                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
+                            <h5 class="mb-3">Habitacion simple</h5>
+                            <div class="features mb-3">
+                                <h6 class="mb-1">Características</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    2 Habitaciones
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    1 Baño
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    1 Balcon
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    3 Sofa
+                                </span>
+
+
+                            </div>
+                            <div class="facilities mb-3 ">
+                                <h6 class="mb-1">Comodidades</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Wifi
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Televisión
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Calefacción
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    A/C
+                                </span>
+                            </div>
+
+                            <div class="guests ">
+                                <h6 class="mb-1">Capacidad</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    5 Adultos
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    4 Niños
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 mt-lg-0  mt-md-0 mt-4 text-center">
+                            <h6 class="mb-4">$ 15 por noche</h6>
+                            <a href="#" class="btn btn-sm w-100 text-white custon-bg shadow-none mb-2">Reservar
+                                ahora</a>
+                            <a href="#" class="btn btn-sm  w-100 btn-outline-dark shadow-none">Mas detalles</a>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de la carta de rooms  -->
+                <!-- Inicio de la carta de rooms  -->
+                <div class="card mb-4 border-0 shadow">
+                    <div class="row g-0 p-3 align-items-center">
+                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                            <img src="images/rooms/1.jpg" class="img-fluid rounded" alt="...">
+                        </div>
+
+                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
+                            <h5 class="mb-3">Habitacion simple</h5>
+                            <div class="features mb-3">
+                                <h6 class="mb-1">Características</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    2 Habitaciones
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    1 Baño
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    1 Balcon
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    3 Sofa
+                                </span>
+
+
+                            </div>
+                            <div class="facilities mb-3 ">
+                                <h6 class="mb-1">Comodidades</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Wifi
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Televisión
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Calefacción
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    A/C
+                                </span>
+                            </div>
+
+                            <div class="guests ">
+                                <h6 class="mb-1">Capacidad</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    5 Adultos
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    4 Niños
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 text-center">
+                            <h6 class="mb-4">$ 15 por noche</h6>
+                            <a href="#" class="btn btn-sm w-100 text-white custon-bg shadow-none mb-2">Reservar
+                                ahora</a>
+                            <a href="#" class="btn btn-sm  w-100 btn-outline-dark shadow-none">Mas detalles</a>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de la carta de rooms  -->
+                <!-- Inicio de la carta de rooms  -->
+                <div class="card mb-4 border-0 shadow">
+                    <div class="row g-0 p-3 align-items-center">
+                        <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
+                            <img src="images/rooms/1.jpg" class="img-fluid rounded" alt="...">
+                        </div>
+
+                        <div class="col-md-5 px-lg-3 px-md-3 px-0">
+                            <h5 class="mb-3">Habitacion simple</h5>
+                            <div class="features mb-3">
+                                <h6 class="mb-1">Características</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    2 Habitaciones
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    1 Baño
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    1 Balcon
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    3 Sofa
+                                </span>
+
+
+                            </div>
+                            <div class="facilities mb-3 ">
+                                <h6 class="mb-1">Comodidades</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Wifi
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Televisión
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    Calefacción
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    A/C
+                                </span>
+                            </div>
+
+                            <div class="guests ">
+                                <h6 class="mb-1">Capacidad</h6>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    5 Adultos
+                                </span>
+                                <span class="badge rounded-pill bg-light text-dark  text-wrap ">
+                                    4 Niños
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 text-center">
+                            <h6 class="mb-4">$ 15 por noche</h6>
+                            <a href="#" class="btn btn-sm w-100 text-white custon-bg shadow-none mb-2">Reservar
+                                ahora</a>
+                            <a href="#" class="btn btn-sm  w-100 btn-outline-dark shadow-none">Mas detalles</a>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de la carta de rooms  -->
+            </div>
+
         </div>
     </div>
 
