@@ -3,14 +3,15 @@ function adminLogin(){
   session_start();
   if(!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']== true)){
       header("location: index.php");
+      exit;
   }
- session_regenerate_id(true) ;
+//  session_regenerate_id(true) ;
 
 }
 
 function redirect ($url) {
   header("Location: $url");
-  exit();
+  exit;
 }
 function alert( $type,$msg ) {
     

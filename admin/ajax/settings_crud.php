@@ -14,8 +14,8 @@ if (isset($_POST['get_general']))
     $json_data = json_encode($data);
     echo $json_data;
 
-
 }
+
 if (isset($_POST['upd_general']))
 {
     $frm_data = filteration($_POST);
@@ -35,6 +35,26 @@ if (isset($_POST['upd_shutdown']))
     echo $res;
 }
 
+if (isset($_POST['get_contacts'])) 
+{
+
+    $q = "SELECT * FROM `contactos_detalle` WHERE  `sr_no`= ? ";
+    $values = [1];
+    $res = select($q, $values,"i");
+    $data= mysqli_fetch_assoc($res);
+    $json_data = json_encode($data);
+    echo $json_data;
+
+}
+
+if (isset($_POST['upd_contacts']))
+{
+    $frm_data = filteration($_POST);
+    $q = "UPDATE `contactos_detalle` SET `address`=?,`gmap`=?,`pn1`=?,`pn2`=?,`email`=?,`fb`=?,`insta`=?,`tw`=?,`iframe`=? WHERE `sr_no`=?";
+    $values = [$frm_data['address'],$frm_data['gmap'],$frm_data['pn1'],$frm_data['pn2'],$frm_data['email'],$frm_data['fb'],$frm_data['insta'],$frm_data['tw'],$frm_data['iframe'],1];
+    $res = update($q,$values,'sssssssssi');
+    echo $res;
+}
 
 
 ?>
