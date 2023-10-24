@@ -21,43 +21,63 @@
         </p>
     </div>
 
+
+   
+
+
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4  ">
                     <iframe class="w-100 rounded mb-4" height="320 px"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15953.109267514472!2d-78.71090427065312!3d-1.5924905247142362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d309a715b9857f%3A0x3acc2e14ff31a9c8!2sSan%20Andr%C3%A9s!5e0!3m2!1ses-419!2sec!4v1697568164714!5m2!1ses-419!2sec"
+                        src="<?php echo $contact_r['iframe']?>"
                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <h5>Dirección</h5>
-                    <a href="https://maps.app.goo.gl/jqb7AXAz5i8qETMAA" target="_blank"
+                    <a href="<?php echo $contact_r['gmap']?>" target="_blank"
                         class="d-inline-block text-decoration-none text-dark mb-2">
                         <i class="bi bi-geo-alt-fill"></i>
-                        C75X+4HM, Chimborazo, San Andrés
+                        <?php echo $contact_r['address']?>
                     </a>
                     <h5 class="mt-4">Llamanos </h5>
-                    <a href="tel: 0987976325 " class="d-inline-block mb-2 text-decoration-none text-dark">
+                    <a href="tel:+ <?php echo $contact_r['pn1']?>" class="d-inline-block mb-2 text-decoration-none text-dark">
                         <i class="bi bi-telephone-fill"></i>
-                        0987976325
+                        <?php echo $contact_r['pn1']?>
                     </a>
                     <br>
-                    <a href="tel: 0987976325 " class="d-inline-block  text-decoration-none text-dark">
-                        <i class="bi bi-whatsapp"></i>
-                        0987976325
-                    </a>
+                    <?php 
+                    if($contact_r['pn2'] != ''){
+                        echo<<<data
+                            <a href="tel: +$contact_r[pn2] " class="d-inline-block  text-decoration-none text-dark">
+                                <i class="bi bi-whatsapp"></i>
+                                $contact_r[pn2] 
+                            </a>
+                        data;
+                    }
+                    
+                    ?>
+                    
                     <h5 class="mt-4">Correo Electónico</h5>
-                    <a href="mailto: sanandres2023@gmail.com" class="d-inline-block  text-decoration-none text-dark">
-                        <i class="bi bi-envelope-fill"></i> sanandres2023@gmail.com</a>
+                    <a href="mailto: <?php echo $contact_r['email']?>" class="d-inline-block  text-decoration-none text-dark">
+                        <i class="bi bi-envelope-fill"></i> <?php echo $contact_r['email']?>
+                    </a>
 
                     <h5 class="mt-4">Siguenos </h5>
-                    <a href="# " class="d-inline-block text-dark fs-5 me-2">
-                        <i class="bi bi-twitter-x me-1"></i>
-                    </a>
+                    <?php 
+                    if($contact_r['tw'] != ''){
+                        echo<<<data
+                            <a href="$contact_r[tw]" class="d-inline-block text-dark fs-5 me-2">
+                                <i class="bi bi-twitter-x me-1"></i>
+                            </a> 
+                        data;
+                    }
+                    
+                    ?>
 
-                    <a href="# " class="d-inline-block  text-dark fs-5 me-2">
+                    <a href="<?php echo $contact_r['fb']?>" class="d-inline-block  text-dark fs-5 me-2">
                         <i class="bi bi-facebook me-1"></i>
                     </a>
 
-                    <a href="# " class="d-inline-block  text-dark fs-5 ">
+                    <a href="<?php echo $contact_r['insta']?> " class="d-inline-block  text-dark fs-5 ">
                         <i class="bi bi-instagram me-1"></i>
 
                     </a>
