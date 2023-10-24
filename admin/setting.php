@@ -105,7 +105,7 @@ adminLogin();
                                     <p class="card-text" id="gmap"></p>
                                 </div>
                                 <div class="mb-4">
-                                    <h6 class="card-subtitle mb-1 fw-bold">Numeros de Contáctanos</h6>
+                                    <h6 class="card-subtitle mb-1 fw-bold">Numeros de Contato</h6>
                                     <p class="card-text mb-1" id="gmap">
                                         <i class="bi bi-telephone-fill"></i>
                                         <span id="pn1"></span>
@@ -199,7 +199,7 @@ adminLogin();
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text"> <i class="bi bi-twitter-x "></i></span>
-                                                        <input type="text" name="tw" id="tw_inp" class="form-control shadow-none" required>
+                                                        <input type="text" name="tw" id="tw_inp" class="form-control shadow-none">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
@@ -221,9 +221,60 @@ adminLogin();
                     </div>
                 </div>
 
+                <!-- Configuraciones Nuestro Equipo Foto -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="card-title">Nuestro Equipo</h5>
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#team-s">
+                                <i class="bi bi-plus-square"></i> Añadir
+                            </button>
+                        </div>
+                        <div class="row" id="team-data">
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal Configuraciones Nuestro Equipo Foto -->
+                <div class="modal fade" id="team-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form id="team_s_form">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Añadir Miembro a Nuestro Equipo</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Nombre</label>
+                                        <input type="text" name="member_name" id="member_name_inp" class="form-control shadow-none" required>
+                                    </div>
+                                    <div class="col-md-12 p-0 mb-3">
+                                        <label class="form-label fw-bold">Imagen</label>
+                                        <input type="file" name="member_picture" id="member_picture_inp" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none" required>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="member_name.value='', member_picture.value=''" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn custon-bg text-white shadow-none">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
+
+
+
+
+
+
 
     <?php require('inc/scripts.php') ?>
 
@@ -234,6 +285,9 @@ adminLogin();
         let site_about_inp = document.getElementById('nosotros_inp');
         let contacts_s_form = document.getElementById('contacts_s_form');
 
+        let team_s_form = document.getElementById('team_s_form');
+        let member_name_inp = document.getElementById('member_name_inp');
+        let member_picture_inp = document.getElementById('member_picture_inp');
 
 
 
@@ -346,7 +400,7 @@ adminLogin();
                 }
                 iframe.src = contacts_data[9];
 
-                contacts_inp (contacts_data);
+                contacts_inp(contacts_data);
                 //  console.log(contacts_data);
 
 
@@ -357,27 +411,27 @@ adminLogin();
 
         }
 
-        function contacts_inp (data){
-            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp','iframe_inp'];
+        function contacts_inp(data) {
+            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp', 'iframe_inp'];
             for (i = 0; i < contacts_inp_id.length; i++) {
-                    document.getElementById(contacts_inp_id[i]).value = data[i + 1];
+                document.getElementById(contacts_inp_id[i]).value = data[i + 1];
 
-                }
+            }
         }
-        
 
-        contacts_s_form.addEventListener('submit',function(e){
+
+        contacts_s_form.addEventListener('submit', function(e) {
             e.preventDefault();
             upd_contacts();
         });
 
-        function upd_contacts(){
-            let index = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw','iframe'];
-            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp','iframe_inp'];
+        function upd_contacts() {
+            let index = ['address', 'gmap', 'pn1', 'pn2', 'email', 'fb', 'insta', 'tw', 'iframe'];
+            let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'insta_inp', 'tw_inp', 'iframe_inp'];
 
-            let data_str="";
-            for(i=0; i<index.length; i++){
-                data_str+=index[i] + "=" + document.getElementById(contacts_inp_id[i]).value + '&';
+            let data_str = "";
+            for (i = 0; i < index.length; i++) {
+                data_str += index[i] + "=" + document.getElementById(contacts_inp_id[i]).value + '&';
             }
             data_str += "upd_contacts";
 
@@ -386,11 +440,11 @@ adminLogin();
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 
-            xhr.onload =function(){
+            xhr.onload = function() {
                 var myModal = document.getElementById('contacts-s');
                 var modal = bootstrap.Modal.getInstance(myModal);
                 modal.hide();
-                if (this.responseText == 1 ) {
+                if (this.responseText == 1) {
                     alert('success', 'Cambios Guardados!');
                     get_contacts();
                 } else {
@@ -402,9 +456,96 @@ adminLogin();
             xhr.send(data_str);
         }
 
+        team_s_form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            add_member();
+        });
+
+        function add_member() {
+            let data = new FormData();
+            data.append('name', member_name_inp.value);
+            data.append('picture', member_picture_inp.files[0]);
+            data.append('add_member', '');
+
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+
+
+            xhr.onload = function() {
+
+                // Ocultar el modal despues de dar click en guardar
+                var myModal = document.getElementById('team-s');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if (this.responseText == 'inv_img') {
+                    alert('error', 'Solo se permiten imagenes JPG Y PNG!')
+                } else if (this.responseText == 'inv_size') {
+                    alert('error', 'La imagen debe tener menos de 2MB!')
+                } else if (this.responseText == 'upd_failed') {
+                    alert('error', 'Fallo la carga de la imagen ¡Servidor caído!')
+                } else {
+                    alert('success', 'Nuevo miembro añadido!');
+                    member_name_inp.value = '';
+                    member_picture_inp.value = '';
+                    get_members();
+
+                }
+
+            }
+
+            xhr.send(data);
+
+
+        };
+
+        function get_members(){
+
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+            xhr.onload = function() {
+                document.getElementById('team-data').innerHTML = this.responseText;
+               
+
+            }
+
+            xhr.send('get_members');
+
+
+        }
+
+        function rem_member(val)
+        {
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/settings_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+            xhr.onload = function() {
+                if(this.responseText==1){
+                alert('success', 'Miembro eliminado!');
+                get_members();
+            }
+            else{
+                alert('error', '¡Servidor caído!')
+            }
+            }
+
+    
+            xhr.send('rem_member='+val);
+
+        }
+
         window.onload = function() {
             get_general();
             get_contacts()
+            get_members();
         }
     </script>
 
