@@ -17,7 +17,7 @@
 
     function setActive() {
          let navbar = document.getElementById('dashboard-menu');
-         let a_tags = navbar.get.getElementsByTagName('a');
+         let a_tags = navbar.getElementsByTagName('a');
 
          for (i = 0; i < a_tags.length; i++) {
              let file = a_tags[i].href.split('/').pop();
