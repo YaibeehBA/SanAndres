@@ -270,7 +270,7 @@
                 </div>
                 <!-- Fin de la carta de rooms  -->
             </div>
-
+      
         </div>
     </div>
 

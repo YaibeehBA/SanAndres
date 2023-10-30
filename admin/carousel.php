@@ -31,7 +31,7 @@ adminLogin();
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h5 class="card-title">Imagenes</h5>
+                            <h5 class="card-title">Imágenes</h5>
                             <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#carousel-s">
                                 <i class="bi bi-plus-square"></i> Añadir
                             </button>

@@ -31,7 +31,9 @@ function alert( $type,$msg ) {
     $bs_class = ($type == "success") ? "alert-success" : "alert-danger";
     
     echo <<<alert
-    <div class="alert $bs_class alert-dismissible fade show custon-alert" role="alert">
+    <div class="alert $bs_class alert-dismissible fade show custon-alert" style="position:fixed;
+    top: 80px;
+    right: 25px;" role="alert">
       <strong class="me-3">$msg</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

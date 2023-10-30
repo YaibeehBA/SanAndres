@@ -36,7 +36,7 @@ input::-webkit-inner-spin-button {
 }
 .custon-alert{
     position:fixed;
-   
+    top: 80px;
     right: 25px;
     
 }
@@ -44,7 +44,26 @@ input::-webkit-inner-spin-button {
     position: fixed;
     height: 100%;
     z-index: 11;
-    }
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(36, 36,36);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
     @media screen and (max-width:991px) {
         #dashboard-menu{
             height: auto;
