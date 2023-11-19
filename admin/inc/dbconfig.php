@@ -100,7 +100,7 @@ function delete($sql,$values,$datatypes)
 {
  $con=$GLOBALS['con'];
  if($stmt = mysqli_prepare($con,$sql)){
-    mysqli_stmt_bind_param($stmt,$datatypes,...$values);
+    mysqli_stmt_bind_param($stmt,$datatypes, ...$values);
     if(mysqli_stmt_execute($stmt)){
         $res= mysqli_stmt_affected_rows($stmt);
         mysqli_stmt_close($stmt);
@@ -115,4 +115,28 @@ function delete($sql,$values,$datatypes)
  else{
     die("La consulta no se puede preparar - Eliminar ");
  }
+}
+
+function del($sql, $values, $datatypes) {
+    $con = $GLOBALS['con'];
+    if ($stmt = mysqli_prepare($con, $sql)) {
+        // Verificamos si $values es un array
+        if (!is_array($values)) {
+            die("Los valores deben ser un array");
+        }
+
+        // Agregamos los parámetros al statement
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $res = mysqli_stmt_affected_rows($stmt);
+            mysqli_stmt_close($stmt);
+            return $res;
+        } else {
+            mysqli_stmt_close($stmt);
+            die("La consulta no puede ejecutarse - Eliminar");
+        }
+    } else {
+        die("La consulta no se puede preparar - Eliminar");
+    }
 }
