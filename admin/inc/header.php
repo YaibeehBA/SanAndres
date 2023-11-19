@@ -16,6 +16,9 @@
                         <a class="nav-link text-white" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-white" href="habitaciones.php">Habitaciones</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-white" href="car_fac.php">Características & Facilidades</a>
                     </li>
                     <li class="nav-item">
