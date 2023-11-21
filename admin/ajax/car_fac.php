@@ -56,9 +56,11 @@ if(isset($_POST['rem_feature']))
         $q = "DELETE FROM `features` WHERE `id`=?";
         $res = delete($q,$values,'i');
         echo $res;
+    }else{
+        echo 'room_added';
     }
 
-   echo 'room_added';
+   
     
 }
 

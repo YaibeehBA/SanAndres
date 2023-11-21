@@ -53,9 +53,11 @@ function rem_feature(val) {
     if (this.responseText == 1) {
       alert("success", "Característica eliminado!");
       get_features();
+      
     } else if (this.responseText == "room_added") {
       alert("error", "¡Característica agregada en la habitación!");
     } else {
+      
       alert("error", "¡Servidor caído!");
     }
   };
