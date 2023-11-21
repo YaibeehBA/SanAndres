@@ -109,7 +109,7 @@ function delete($sql,$values,$datatypes)
     else{
         mysqli_stmt_close($stmt);
         die("La consulta no  puede ejecutar - Eliminar");
-    
+
     }
  }
  else{
@@ -117,14 +117,14 @@ function delete($sql,$values,$datatypes)
  }
 }
 
-function del($sql, $values, $datatypes) {
+function del($sql, $values, $datatypes)
+{
     $con = $GLOBALS['con'];
     if ($stmt = mysqli_prepare($con, $sql)) {
         // Verificamos si $values es un array
         if (!is_array($values)) {
             die("Los valores deben ser un array");
         }
-
         // Agregamos los parámetros al statement
         mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
 
