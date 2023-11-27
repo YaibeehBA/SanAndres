@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require('inc/links.php') ?>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-   
+
     <title>San Andres - Home</title>
     <style>
         .availability-form {
@@ -28,25 +28,24 @@
 </head>
 
 <body class="bg-light">
-   <?php require('inc/header.php') ?>
+    <?php require('inc/header.php') ?>
 
     <!-- Carousel -->
     <div class="container-fluid px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-               <?php 
-                 $res =  selectAll('carousel');
-                 while($row = mysqli_fetch_assoc($res))
-                 {
-                     $path =CAROUSEL_IMG_PATH;
-                     echo <<<data
+                <?php
+                $res =  selectAll('carousel');
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $path = CAROUSEL_IMG_PATH;
+                    echo <<<data
                         <div class="swiper-slide">
                             <img src=" $path$row[image]" class="w-100 d-block">
                         </div>
                      data;
-                 }
-               
-               ?>
+                }
+
+                ?>
             </div>
         </div>
     </div>
@@ -98,49 +97,71 @@
     <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Nuestras Habitaciones</h2>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 md-6 my-3">
-                <div class="card border-0 shadow" style="max-width: 350px; margin:auto;">
-                    <img src="images/rooms/1.jpg" class="card-img-top">
+            <?php
+            $room_res = select("SELECT * FROM `rooms` WHERE `status`=? AND `removed`=?  ORDER BY `id` DESC LIMIT 3", [1, 0], 'ii');
+            while ($room_data = mysqli_fetch_assoc($room_res)) {
+                // obtener características 
+                $fea_q = mysqli_query($con, "SELECT f.name FROM `features`f 
+                INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
+                WHERE rfea.room_id = '$room_data[id]'");
+
+                $features_data = "";
+                while ($fea_row = mysqli_fetch_assoc($fea_q)) {
+                    $features_data .= " <span class='badge rounded-pill bg-light text-dark  text-wrap me-1 mb-1 '>
+                    $fea_row[name]
+                    </span>";
+                }
+                // obtener facilidades
+                $fac_q = mysqli_query($con, "SELECT f.name FROM `facilities`f 
+                INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id 
+                WHERE rfac.room_id ='$room_data[id]'");
+
+                $facilities_data = "";
+                while ($fac_row = mysqli_fetch_assoc($fac_q)) {
+                    $facilities_data .= " <span class='badge rounded-pill bg-light text-dark  text-wrap me-1 mb-1 '>
+                    $fac_row[name]
+                    </span>";
+                }
+                // obtener imagen
+
+                $room_thumb = ROOM_IMG_PATH . "thumbnail.jpg";
+                $thumb_q = mysqli_query($con, "SELECT * FROM `room_images` 
+                WHERE `room_id`=$room_data[id] 
+                AND `thumb`='1'");
+
+                if (mysqli_num_rows($thumb_q) > 0) {
+                    $thumb_res =  mysqli_fetch_assoc($thumb_q);
+                    $room_thumb = ROOM_IMG_PATH . $thumb_res['image'];
+                }
+
+                // impimir habitación  la  card-> de bootstrap
+
+                echo <<<data
+
+                <div class="col-lg-4 md-6 my-3">
+                <div class="card border-0 shadow" style="max-width: 360px; margin:auto;">
+                    <div class="m-2">
+                        <img src="$room_thumb" class="card-img-top" style='height: 220px; object-fit: cover;'>
+                    </div>
+                    
                     <div class="card-body">
-                        <h5>Habitacion simple </h5>
-                        <h6 class="mb-4">$ 15 por noche</h6>
+                        <h5>$room_data[name]</h5>
+                        <h6 class="mb-4">$ $room_data[price] por noche</h6>
                         <div class="features mb-4">
                             <h6 class="mb-1">Características</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                2 Habitaciones
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                1 Baño
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                1 Balcon
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                3 Sofa
-                            </span>
+                            $features_data
                         </div>
                         <div class="facilities mb-4 ">
                             <h6 class="mb-1">Comodidades</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Wifi
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Televisión
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Calefacción
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                A/C
-                            </span>
+                            $facilities_data
                         </div>
                         <div class="guests mb-4 ">
                             <h6 class="mb-1">Capacidad</h6>
                             <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                5 Adultos
+                            $room_data[adult] Adultos
                             </span>
                             <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                4 Niños
+                            $room_data[children] Niños
                             </span>
 
                         </div>
@@ -156,141 +177,21 @@
                         </div>
                         <div class="d-flex justify-content-evenly mb-2">
                             <a href="#" class="btn btn-sm text-white custon-bg shadow-none">Reservar ahora</a>
-                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Mas detalles</a>
+                            <a href="room_detalles.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">Mas detalles</a>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 md-6 my-3">
-                <div class="card border-0 shadow" style="max-width: 350px; margin:auto;">
-                    <img src="images/rooms/1.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Habitacion simple </h5>
-                        <h6 class="mb-4">$ 15 por noche</h6>
-                        <div class="features mb-4">
-                            <h6 class="mb-1">Características</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                2 Habitaciones
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                1 Baño
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                1 Balcon
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                3 Sofa
-                            </span>
-                        </div>
-                        <div class="facilities mb-4 ">
-                            <h6 class="mb-1">Comodidades</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Wifi
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Televisión
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Calefacción
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                A/C
-                            </span>
-                        </div>
-                        <div class="guests mb-4 ">
-                            <h6 class="mb-1">Capacidad</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                5 Adultos
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                4 Niños
-                            </span>
-                        </div>
-                        <div class="rating mb-4">
-                            <h6 class="mb-1">Clasificación</h6>
-                            <span class="badge rounded-pill bg-light">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                            </span>
 
-                        </div>
-                        <div class="d-flex justify-content-evenly mb-2">
-                            <a href="#" class="btn btn-sm text-white custon-bg shadow-none">Reservar ahora</a>
-                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Mas detalles</a>
+            data;
+            }
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 md-6 my-3">
-                <div class="card border-0 shadow" style="max-width: 350px; margin:auto;">
-                    <img src="images/rooms/1.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <h5>Habitacion simple </h5>
-                        <h6 class="mb-4">$ 15 por noche</h6>
-                        <div class="features mb-4">
-                            <h6 class="mb-1">Características</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                2 Habitaciones
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                1 Baño
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                1 Balcon
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                3 Sofa
-                            </span>
-                        </div>
-                        <div class="facilities mb-4 ">
-                            <h6 class="mb-1">Comodidades</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Wifi
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Televisión
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                Calefacción
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                A/C
-                            </span>
-                        </div>
-                        <div class="guests mb-4 ">
-                            <h6 class="mb-1">Capacidad</h6>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                5 Adultos
-                            </span>
-                            <span class="badge rounded-pill bg-light text-dark  text-wrap ">
-                                4 Niños
-                            </span>
-                        </div>
-                        <div class="rating mb-4">
-                            <h6 class="mb-1">Clasificación</h6>
-                            <span class="badge rounded-pill bg-light">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                            </span>
+            ?>
 
-                        </div>
-                        <div class="d-flex justify-content-evenly mb-2 ">
-                            <a href="#" class="btn btn-sm text-white custon-bg shadow-none">Reservar ahora</a>
-                            <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Mas detalles</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="col-lg-12  text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas Habitaciones</a>
+                <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas Habitaciones</a>
             </div>
         </div>
     </div>
@@ -300,26 +201,20 @@
     <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Nuestras facilidades</h2>
     <div class="container">
         <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-                <img src="images/facilities/wifi.svg" width="80px" alt="">
-                <h5 class="mt-3">Wifi</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-                <img src="images/facilities/tv.svg" width="80px" alt="">
-                <h5 class="mt-3">Televisión</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-                <img src="images/facilities/calefaccion.svg" width="80px" alt="">
-                <h5 class="mt-3">Calefacción</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-                <img src="images/facilities/aire.svg" width="80px" alt="">
-                <h5 class="mt-3">Aire acondicionado </h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-                <img src="images/facilities/masajes.svg" width="80px" alt="">
-                <h5 class="mt-3">Masajes</h5>
-            </div>
+            <?php
+            $res = mysqli_query($con, "SELECT * FROM `facilities`  ORDER BY `id` DESC LIMIT 5");
+            $path = FACILITIES_IMG_PATH;
+
+            while ($row = mysqli_fetch_assoc($res)) {
+                echo <<<data
+                    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                        <img src="$path$row[icon]"" width="60px" alt="">
+                        <h5 class="mt-3">$row[name]</h5>
+                    </div>
+                data;
+            }
+
+            ?>
             <div class="col-lg-12 text-center mt-5">
                 <a href="facilidades.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas facilidades</a>
 
@@ -339,7 +234,7 @@
             <div class="swiper-wrapper mb-5">
 
                 <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center m-3">
+                    <div class="profile d-flex align-items-center mb-3">
                         <img src="images/facilities/star.svg" width="30px">
                         <h6 class="m-0 ms-2">Usuario 1</h6>
                     </div>
@@ -358,7 +253,7 @@
                 </div>
 
                 <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center m-3">
+                    <div class="profile d-flex align-items-center mb-3">
                         <img src="images/facilities/star.svg" width="30px">
                         <h6 class="m-0 ms-2">Usuario 1</h6>
                     </div>
@@ -377,7 +272,7 @@
                 </div>
 
                 <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center m-3">
+                    <div class="profile d-flex align-items-center mb-3">
                         <img src="images/facilities/star.svg" width="30px">
                         <h6 class="m-0 ms-2">Usuario 1</h6>
                     </div>
@@ -396,7 +291,7 @@
                 </div>
 
                 <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center m-3">
+                    <div class="profile d-flex align-items-center mb-3">
                         <img src="images/facilities/star.svg" width="30px">
                         <h6 class="m-0 ms-2">Usuario 1</h6>
                     </div>
@@ -415,7 +310,7 @@
                 </div>
 
                 <div class="swiper-slide bg-white p-4">
-                    <div class="profile d-flex align-items-center m-3">
+                    <div class="profile d-flex align-items-center mb-3">
                         <img src="images/facilities/star.svg" width="30px">
                         <h6 class="m-0 ms-2">Usuario 1</h6>
                     </div>
@@ -437,12 +332,12 @@
             <div class="swiper-pagination"></div>
         </div>
         <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas Testimonios</a>
-            </div>
+            <a href="nosotros.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Mas Testimonios</a>
+        </div>
     </div>
 
-        
-    
+
+
 
     <!-- Encuéntranos -->
     <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Encuéntranos</h2>
@@ -459,9 +354,9 @@
                         <?php echo $contact_r['pn1'] ?>
                     </a>
                     <br>
-                    <?php 
-                    if($contact_r['pn2'] != ''){
-                        echo<<<data
+                    <?php
+                    if ($contact_r['pn2'] != '') {
+                        echo <<<data
                         <a href="$contact_r[pn2]" class="d-inline-block  text-decoration-none text-dark">
                         <i class="bi bi-whatsapp"></i>
                         $contact_r[pn2]
@@ -470,14 +365,14 @@
                         data;
                     }
                     ?>
-                    
+
                 </div>
 
                 <div class="bg-white p-4 rounded mb-4">
                     <h5>Siguenos </h5>
-                    <?php 
-                    if($contact_r['tw'] != ''){
-                        echo<<<data
+                    <?php
+                    if ($contact_r['tw'] != '') {
+                        echo <<<data
                                 <a href="$contact_r[tw]" class="d-inline-block mb-3">
                                 <span class="badge bg-light text-dark  fs-6 p-2">
                                     <i class="bi bi-twitter-x me-1"></i>Twitter
@@ -488,7 +383,7 @@
                     }
 
                     ?>
-                    
+
                     <a href=" <?php echo $contact_r['fb'] ?>" class="d-inline-block mb-3">
                         <span class="badge bg-light text-dark  fs-6 p-2">
                             <i class="bi bi-facebook me-1"></i>Facebook
@@ -510,7 +405,7 @@
 
     <!-- footer-->
     <?php require('inc/footer.php') ?>
-    
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".swiper-container", {

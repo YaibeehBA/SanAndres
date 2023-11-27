@@ -31,6 +31,9 @@ function redirect ($url) {
   header("Location: $url");
   exit;
 }
+
+
+
 function alert( $type,$msg ) {
     
     $bs_class = ($type == "success") ? "alert-success" : "alert-danger";
