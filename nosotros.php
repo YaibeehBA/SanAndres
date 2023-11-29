@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Andres - Nosotros </title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <?php require('inc/links.php') ?>
+    <title><?php echo $settings_r['titulo']?> - NOSOTROS</title>
+
+
+
     <style>
         .box {
             border-top-color: #2ec1ac !important;
